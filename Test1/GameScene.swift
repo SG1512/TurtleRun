@@ -27,7 +27,7 @@ class GameScene: SKScene {
 
         
         
-        Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(GameScene.createRoadStripLeft), userInfo: nil, repeats: true)
+//        Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(GameScene.createRoadStripLeft), userInfo: nil, repeats: true)
         Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(GameScene.createRoadStripRight), userInfo: nil, repeats: true)
          Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(GameScene.startCountDown), userInfo: nil, repeats: true)
       
@@ -55,9 +55,9 @@ class GameScene: SKScene {
 //        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
 //    }
     
-    @objc func move(){
-        
-    }
+//    @objc func move(){
+//        
+//    }
     
     override func update(_ currentTime: TimeInterval) {
         showRoadStrip()
@@ -102,6 +102,44 @@ class GameScene: SKScene {
         })
     }
     
+    func moveTurtle() {
+        
+        let moveAction: SKAction = SKAction.moveBy(x: -157, y: -320, duration: 1)
+        turtle.run(moveAction)
+    }
+    
+    func touchDown(atPoint pos: CGPoint){
+        if (pos.y > 300){
+            moveTurtle()
+        } else {
+            ()
+        }
+    }
+        func touchMoved(toPoint pos: CGPoint){
+            
+        }
+        
+        func touchUp(atPoint pos:CGPoint){
+            
+        }
+        
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+                }
+        
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+            for t in touches { self.touchMoved(toPoint: t.location(in: self))}
+        }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+            for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        }
+
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+            for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        }
+
+        
 //    func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
 //        let moveTurtle = SKAction.moveTo(y: -160, duration: 0.1)
 //        let moveTurtle2 = SKAction.moveTo(y: 0, duration: 0.1)
