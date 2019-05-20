@@ -9,63 +9,65 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var panda = SKSpriteNode()
     var turtle = SKSpriteNode()
-    
+    var finishingLine = SKSpriteNode()
     var countDown = 1
     var stopEverything = true
     
-//    let tapRec = UITapGestureRecognizer()
     
     override func didMove(to view: SKView) {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-//        turtle.position = CGPoint(x: CGRect.MidX(self.frame), y: -500)
         setUp()
-//        turtle = self.childNode(withName: "Turtle") as! SKSpriteNode
-
         
-        
+        physicsWorld.contactDelegate = self
         Timer.scheduledTimer(timeInterval: TimeInterval(5), target: self, selector: #selector(GameScene.createRoadStripLeft), userInfo: nil, repeats: true)
         Timer.scheduledTimer(timeInterval: TimeInterval(5), target: self, selector: #selector(GameScene.createRoadStripRight), userInfo: nil, repeats: true)
          Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(GameScene.startCountDown), userInfo: nil, repeats: true)
-      
-        
-//        tapRec.addTarget(self, action: #selector(GameScene.tappedView(_:)))
-//        tapRec.numberOfTouchesRequired = 1
-//        tapRec.numberOfTapsRequired = 1
-//        self.view!.addGestureRecognizer(tapRec)
-        
-//        let gesture = UITapGestureRecognizer(target: self, action: #selector(move))
-//        self.turtle.gesture
         
     }
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch: AnyObject in touches {
-//            let location = touch.location(in: self)
-//
-//            turtle.physicsBody?.velocity = CGVector(dx: 0,dy: 0)
-//            turtle.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 25))
-//
-//        }
-//    }
-    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-//    }
-    
-//    @objc func move(){
-//
-//    }
+
     
     override func update(_ currentTime: TimeInterval) {
         showRoadStrip()
-//        afterCollision()
     }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        var firstBody = SKPhysicsBody()
+        var secondBody = SKPhysicsBody()
+        
+        if contact.bodyA.node?.name == "Turtle" || contact.bodyA.node?.name == "Panda"{
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        }else{
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        firstBody.node?.removeFromParent()
+        afterFinishingLine()
+    }
+    
     func setUp() {
         turtle = self.childNode(withName: "Turtle") as! SKSpriteNode
         panda = self.childNode(withName: "Panda") as! SKSpriteNode
+        finishingLine = self.childNode(withName: "finishingLine") as! SKSpriteNode
+        
+        turtle.physicsBody?.categoryBitMask = FinishType.ANIMAL_COLLIDER
+        turtle.physicsBody?.contactTestBitMask = FinishType.FINISHLINE_COLLIDER
+        turtle.physicsBody?.collisionBitMask = 0
+        
+        panda.physicsBody?.categoryBitMask = FinishType.ANIMAL_COLLIDER
+        panda.physicsBody?.contactTestBitMask = FinishType.FINISHLINE_COLLIDER
+        panda.physicsBody?.collisionBitMask = 0
+        
+        
+        
+        finishingLine.physicsBody?.categoryBitMask = FinishType.FINISHLINE_COLLIDER
+        finishingLine.physicsBody?.collisionBitMask = 0
+        finishingLine.physicsBody?.affectedByGravity = false
+
     }
     @objc func createRoadStripLeft() {
         let leftRoadStrip = SKShapeNode(rectOf: CGSize(width: 30, height: 200))
@@ -103,70 +105,43 @@ class GameScene: SKScene {
     }
     
     func moveTurtle() {
-        
-        let moveAction: SKAction = SKAction.moveBy(x: 0, y: 10, duration: 5)
+        if !stopEverything{
+        let moveAction: SKAction = SKAction.moveBy(x: 0, y: 2, duration: 1)
         turtle.run(moveAction)
+        print(turtle.position)
+        }
     }
     
     func movePanda() {
-        let moveAction: SKAction = SKAction.moveBy(x: 0, y: 10, duration: 3)
+        if !stopEverything{
+        let moveAction: SKAction = SKAction.moveBy(x: 0, y: 5, duration: 1)
         panda.run(moveAction)
+        }
     }
     
     func touchDown(atPoint pos: CGPoint){
-        if (pos.y < -330) && (pos.x < 0){
+        if (pos.y < 640) && (pos.x < 0){
             moveTurtle()
-        } else if (pos.y < -330) && (pos.x > 0){
+        } else if (pos.y < 640) && (pos.x > 0){
             movePanda()
         }
         else {
             ()
         }
     }
-//        func touchMoved(toPoint pos: CGPoint){
-//
-//        }
-//
-//        func touchUp(atPoint pos:CGPoint){
-//
-//        }
+
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             for t in touches { self.touchDown(atPoint: t.location(in: self)) }
                 }
-        
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//            for t in touches { self.touchMoved(toPoint: t.location(in: self))}
-//        }
-//
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//            for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-//        }
-//
-//    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-//            for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-//        }
-
-        
-//    func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-//        let moveTurtle = SKAction.moveTo(y: -160, duration: 0.1)
-//        let moveTurtle2 = SKAction.moveTo(y: 0, duration: 0.1)
-//        if turtle.position.y == -500 {
-//            turtle.run(moveTurtle)
-//        }
-//        else if turtle.position.y == -160 {
-//            turtle.run(moveTurtle2)
-//        }
-//        //            if ball.position.y == 380 {
-//        //                ball.runAction(moveBalldown)
-//        //            }
-//    }
     
-//    func afterCollision(){
-//        let menuScene = SKScene(fileNamed: "GameMenu")!
-//        menuScene.scaleMode = .aspectFill
-//        view?.presentScene(menuScene, transition: SKTransition.crossFade(withDuration: TimeInterval (2)))
-//    }
+    
+    
+    func afterFinishingLine(){
+        let menuScene = SKScene(fileNamed: "GameMenu")!
+        menuScene.scaleMode = .aspectFill
+        view?.presentScene(menuScene, transition: SKTransition.doorsCloseHorizontal(withDuration: TimeInterval (1)))
+    }
     
     @objc func startCountDown(){
         if countDown>0{
@@ -193,36 +168,7 @@ class GameScene: SKScene {
             }
         }
     }
-//    func touchDown(atPoint pos: CGPoint) {
-//        jump()
-//    }
-//
-//    func walk(){
-//       turtle.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 500))
-//    }
-    
-//    func tutleTapped(){
-//    }
-   
-    
-//    func jump() {
-////        turtle.texture = SKTexture(imageNamed: "Turtle_jumping")
-//        turtle.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 500))
-//    }
-    
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-//    }
 
-//    func touchUp(atPoint pos: CGPoint) {
-//        turtle.texture = SKTexture(imageNamed: "turtle_standing")
-//    }
-  
-//    @objc func tappedView(_ sender:UITapGestureRecognizer){
-//        let point:CGPoint = sender.location(in: self.view)
-//        print("Single Tap")
-//        print(point)
-//    }
     
     
 

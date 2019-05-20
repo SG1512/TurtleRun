@@ -16,6 +16,7 @@
 		14F588CC22908869004A4B42 /* GameMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 14F588CB22908869004A4B42 /* GameMenu.sks */; };
 		14F588CE22909071004A4B42 /* GameMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F588CD22909071004A4B42 /* GameMenu.swift */; };
 		14F588D02290AA4D004A4B42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14F588CF2290AA4D004A4B42 /* LaunchScreen.storyboard */; };
+		14F588D3229297C0004A4B42 /* Finish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F588D122929047004A4B42 /* Finish.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		14F588CB22908869004A4B42 /* GameMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameMenu.sks; sourceTree = "<group>"; };
 		14F588CD22909071004A4B42 /* GameMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMenu.swift; sourceTree = "<group>"; };
 		14F588CF2290AA4D004A4B42 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		14F588D122929047004A4B42 /* Finish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finish.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,10 +65,11 @@
 			isa = PBXGroup;
 			children = (
 				14701F90228D745E004EBF93 /* AppDelegate.swift */,
-				14F588CD22909071004A4B42 /* GameMenu.swift */,
 				14F588CB22908869004A4B42 /* GameMenu.sks */,
 				14701F92228D745E004EBF93 /* GameScene.sks */,
+				14F588CD22909071004A4B42 /* GameMenu.swift */,
 				14701F96228D745E004EBF93 /* GameScene.swift */,
+				14F588D122929047004A4B42 /* Finish.swift */,
 				14701F98228D745E004EBF93 /* GameViewController.swift */,
 				14701F9A228D745E004EBF93 /* Main.storyboard */,
 				14701F9D228D745F004EBF93 /* Assets.xcassets */,
@@ -153,6 +156,7 @@
 				14701F97228D745E004EBF93 /* GameScene.swift in Sources */,
 				14701F99228D745E004EBF93 /* GameViewController.swift in Sources */,
 				14701F91228D745E004EBF93 /* AppDelegate.swift in Sources */,
+				14F588D3229297C0004A4B42 /* Finish.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
