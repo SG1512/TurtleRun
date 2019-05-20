@@ -27,8 +27,8 @@ class GameScene: SKScene {
 
         
         
-//        Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(GameScene.createRoadStripLeft), userInfo: nil, repeats: true)
-        Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(GameScene.createRoadStripRight), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: TimeInterval(5), target: self, selector: #selector(GameScene.createRoadStripLeft), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: TimeInterval(5), target: self, selector: #selector(GameScene.createRoadStripRight), userInfo: nil, repeats: true)
          Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(GameScene.startCountDown), userInfo: nil, repeats: true)
       
         
@@ -56,7 +56,7 @@ class GameScene: SKScene {
 //    }
     
 //    @objc func move(){
-//        
+//
 //    }
     
     override func update(_ currentTime: TimeInterval) {
@@ -104,40 +104,48 @@ class GameScene: SKScene {
     
     func moveTurtle() {
         
-        let moveAction: SKAction = SKAction.moveBy(x: -157, y: -320, duration: 1)
+        let moveAction: SKAction = SKAction.moveBy(x: 0, y: 10, duration: 5)
         turtle.run(moveAction)
     }
     
+    func movePanda() {
+        let moveAction: SKAction = SKAction.moveBy(x: 0, y: 10, duration: 3)
+        panda.run(moveAction)
+    }
+    
     func touchDown(atPoint pos: CGPoint){
-        if (pos.y > 300){
+        if (pos.y < -330) && (pos.x < 0){
             moveTurtle()
-        } else {
+        } else if (pos.y < -330) && (pos.x > 0){
+            movePanda()
+        }
+        else {
             ()
         }
     }
-        func touchMoved(toPoint pos: CGPoint){
-            
-        }
-        
-        func touchUp(atPoint pos:CGPoint){
-            
-        }
-        
+//        func touchMoved(toPoint pos: CGPoint){
+//
+//        }
+//
+//        func touchUp(atPoint pos:CGPoint){
+//
+//        }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             for t in touches { self.touchDown(atPoint: t.location(in: self)) }
                 }
         
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-            for t in touches { self.touchMoved(toPoint: t.location(in: self))}
-        }
-
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-            for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-        }
-
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-            for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-        }
+//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//            for t in touches { self.touchMoved(toPoint: t.location(in: self))}
+//        }
+//
+//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//            for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+//        }
+//
+//    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+//            for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+//        }
 
         
 //    func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
