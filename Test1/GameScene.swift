@@ -75,7 +75,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         leftRoadStrip.fillColor = SKColor.white
         leftRoadStrip.alpha = 1.0
         leftRoadStrip.name = "leftRoadStrip"
-        leftRoadStrip.zPosition = 10
+        leftRoadStrip.zPosition = 0
         leftRoadStrip.position.x = -187.5
         leftRoadStrip.position.y = 700
         addChild(leftRoadStrip)
@@ -87,7 +87,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rightRoadStrip.fillColor = SKColor.white
         rightRoadStrip.alpha = 1.0
         rightRoadStrip.name = "rightRoadStrip"
-        rightRoadStrip.zPosition = 10
+        rightRoadStrip.zPosition = 0
         rightRoadStrip.position.x = 187.5
         rightRoadStrip.position.y = 700
         addChild(rightRoadStrip)

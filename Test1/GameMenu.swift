@@ -11,11 +11,11 @@ import SpriteKit
 
 class GameMenu: SKScene{
     
-    var startGame = SKLabelNode()
+    var startGame = SKSpriteNode()
     
     override func didMove(to view: SKView) {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        startGame = self.childNode(withName: "startGame") as! SKLabelNode
+        startGame = self.childNode(withName: "startGame") as! SKSpriteNode
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
