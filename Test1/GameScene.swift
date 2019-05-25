@@ -73,7 +73,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let leftRoadStrip = SKShapeNode(rectOf: CGSize(width: 30, height: 200))
         leftRoadStrip.strokeColor = SKColor.white
         leftRoadStrip.fillColor = SKColor.white
-        leftRoadStrip.alpha = 0.4
+        leftRoadStrip.alpha = 1.0
         leftRoadStrip.name = "leftRoadStrip"
         leftRoadStrip.zPosition = 10
         leftRoadStrip.position.x = -187.5
@@ -85,7 +85,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let rightRoadStrip = SKShapeNode(rectOf: CGSize(width: 30, height: 200))
         rightRoadStrip.strokeColor = SKColor.white
         rightRoadStrip.fillColor = SKColor.white
-        rightRoadStrip.alpha = 0.4
+        rightRoadStrip.alpha = 1.0
         rightRoadStrip.name = "rightRoadStrip"
         rightRoadStrip.zPosition = 10
         rightRoadStrip.position.x = 187.5
