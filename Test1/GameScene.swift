@@ -29,7 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         Timer.scheduledTimer(timeInterval: TimeInterval(5), target: self, selector: #selector(GameScene.createRoadStripRight), userInfo: nil, repeats: true)
          Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(GameScene.startCountDown), userInfo: nil, repeats: true)
         
-        if let musicURL =  Bundle.main.url(forResource: "race", withExtension: "wav"){
+        if let musicURL =  Bundle.main.url(forResource: "race2", withExtension: "mp3"){
             backgroundMusic = SKAudioNode(url: musicURL)
             addChild(backgroundMusic)
         }
