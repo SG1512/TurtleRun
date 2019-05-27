@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -16,6 +17,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var finishingLine = SKSpriteNode()
     var countDown = 1
     var stopEverything = true
+    var backgroundMusic: SKAudioNode!
     
     
     override func didMove(to view: SKView) {
@@ -27,6 +29,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         Timer.scheduledTimer(timeInterval: TimeInterval(5), target: self, selector: #selector(GameScene.createRoadStripRight), userInfo: nil, repeats: true)
          Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(GameScene.startCountDown), userInfo: nil, repeats: true)
         
+        if let musicURL =  Bundle.main.url(forResource: "race", withExtension: "wav"){
+            backgroundMusic = SKAudioNode(url: musicURL)
+            addChild(backgroundMusic)
+        }
     }
 
     
@@ -106,7 +112,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func moveTurtle() {
         if !stopEverything{
-        let moveAction: SKAction = SKAction.moveBy(x: 0, y: 2, duration: 1)
+        let moveAction: SKAction = SKAction.moveBy(x: 0, y: 4, duration: 1)
         turtle.run(moveAction)
         print(turtle.position)
         }
@@ -114,7 +120,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func movePanda() {
         if !stopEverything{
-        let moveAction: SKAction = SKAction.moveBy(x: 0, y: 5, duration: 1)
+        let moveAction: SKAction = SKAction.moveBy(x: 0, y: 4, duration: 1)
         panda.run(moveAction)
         }
     }
@@ -143,6 +149,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         view?.presentScene(menuScene, transition: SKTransition.doorsCloseHorizontal(withDuration: TimeInterval (1)))
     }
     
+    
     @objc func startCountDown(){
         if countDown>0{
             if countDown<4{
@@ -156,7 +163,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 countDownLabel.name = "clabel"
                 countDownLabel.horizontalAlignmentMode = .center
                 addChild(countDownLabel)
-                
+                MusicPlayer.shared.playSoundEffect(soundEffect: "")
+
                 let deadTime = DispatchTime.now() + 0.5
                 DispatchQueue.main.asyncAfter(deadline: deadTime, execute: {
                     countDownLabel.removeFromParent()
