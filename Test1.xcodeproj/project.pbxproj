@@ -18,6 +18,10 @@
 		14BF2A3E229B7966004FB8EB /* soundeffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BF2A3D229B7966004FB8EB /* soundeffect.swift */; };
 		14BF2A40229B8114004FB8EB /* countdown1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 14BF2A3F229B8114004FB8EB /* countdown1.mp3 */; };
 		14BF2A42229B8A2C004FB8EB /* race2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 14BF2A41229B8A2C004FB8EB /* race2.mp3 */; };
+		14BF2A44229BB3A2004FB8EB /* TurtleWin.sks in Resources */ = {isa = PBXBuildFile; fileRef = 14BF2A43229BB3A2004FB8EB /* TurtleWin.sks */; };
+		14BF2A46229BB3AF004FB8EB /* PandaWin.sks in Resources */ = {isa = PBXBuildFile; fileRef = 14BF2A45229BB3AF004FB8EB /* PandaWin.sks */; };
+		14BF2A48229BB3BE004FB8EB /* PandaWin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BF2A47229BB3BE004FB8EB /* PandaWin.swift */; };
+		14BF2A4A229BB3C8004FB8EB /* Turtle Win.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BF2A49229BB3C8004FB8EB /* Turtle Win.swift */; };
 		14F588CC22908869004A4B42 /* GameMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 14F588CB22908869004A4B42 /* GameMenu.sks */; };
 		14F588CE22909071004A4B42 /* GameMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F588CD22909071004A4B42 /* GameMenu.swift */; };
 		14F588D02290AA4D004A4B42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14F588CF2290AA4D004A4B42 /* LaunchScreen.storyboard */; };
@@ -38,6 +42,10 @@
 		14BF2A3D229B7966004FB8EB /* soundeffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = soundeffect.swift; sourceTree = "<group>"; };
 		14BF2A3F229B8114004FB8EB /* countdown1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = countdown1.mp3; sourceTree = "<group>"; };
 		14BF2A41229B8A2C004FB8EB /* race2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = race2.mp3; sourceTree = "<group>"; };
+		14BF2A43229BB3A2004FB8EB /* TurtleWin.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TurtleWin.sks; sourceTree = "<group>"; };
+		14BF2A45229BB3AF004FB8EB /* PandaWin.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PandaWin.sks; sourceTree = "<group>"; };
+		14BF2A47229BB3BE004FB8EB /* PandaWin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaWin.swift; sourceTree = "<group>"; };
+		14BF2A49229BB3C8004FB8EB /* Turtle Win.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Turtle Win.swift"; sourceTree = "<group>"; };
 		14F588CB22908869004A4B42 /* GameMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameMenu.sks; sourceTree = "<group>"; };
 		14F588CD22909071004A4B42 /* GameMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMenu.swift; sourceTree = "<group>"; };
 		14F588CF2290AA4D004A4B42 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -79,6 +87,10 @@
 				14701F92228D745E004EBF93 /* GameScene.sks */,
 				14F588CD22909071004A4B42 /* GameMenu.swift */,
 				14701F96228D745E004EBF93 /* GameScene.swift */,
+				14BF2A47229BB3BE004FB8EB /* PandaWin.swift */,
+				14BF2A49229BB3C8004FB8EB /* Turtle Win.swift */,
+				14BF2A43229BB3A2004FB8EB /* TurtleWin.sks */,
+				14BF2A45229BB3AF004FB8EB /* PandaWin.sks */,
 				14BF2A3D229B7966004FB8EB /* soundeffect.swift */,
 				14F588D122929047004A4B42 /* Finish.swift */,
 				14701F98228D745E004EBF93 /* GameViewController.swift */,
@@ -152,6 +164,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14BF2A44229BB3A2004FB8EB /* TurtleWin.sks in Resources */,
 				14F588CC22908869004A4B42 /* GameMenu.sks in Resources */,
 				14BF2A42229B8A2C004FB8EB /* race2.mp3 in Resources */,
 				14701F9C228D745E004EBF93 /* Main.storyboard in Resources */,
@@ -161,6 +174,7 @@
 				14BF2A3A229B749F004FB8EB /* countdown.mp3 in Resources */,
 				14BF2A40229B8114004FB8EB /* countdown1.mp3 in Resources */,
 				14701F9E228D745F004EBF93 /* Assets.xcassets in Resources */,
+				14BF2A46229BB3AF004FB8EB /* PandaWin.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,8 +186,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				14F588CE22909071004A4B42 /* GameMenu.swift in Sources */,
+				14BF2A4A229BB3C8004FB8EB /* Turtle Win.swift in Sources */,
 				14701F97228D745E004EBF93 /* GameScene.swift in Sources */,
 				14BF2A3E229B7966004FB8EB /* soundeffect.swift in Sources */,
+				14BF2A48229BB3BE004FB8EB /* PandaWin.swift in Sources */,
 				14701F99228D745E004EBF93 /* GameViewController.swift in Sources */,
 				14701F91228D745E004EBF93 /* AppDelegate.swift in Sources */,
 				14F588D3229297C0004A4B42 /* Finish.swift in Sources */,

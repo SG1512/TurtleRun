@@ -29,7 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         Timer.scheduledTimer(timeInterval: TimeInterval(5), target: self, selector: #selector(GameScene.createRoadStripRight), userInfo: nil, repeats: true)
          Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(GameScene.startCountDown), userInfo: nil, repeats: true)
         
-        if let musicURL =  Bundle.main.url(forResource: "race2", withExtension: "mp3"){
+        if let musicURL =  Bundle.main.url(forResource: "race2", withExtension: "mp3;"){
             backgroundMusic = SKAudioNode(url: musicURL)
             addChild(backgroundMusic)
         }
@@ -44,15 +44,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var firstBody = SKPhysicsBody()
         var secondBody = SKPhysicsBody()
         
-        if contact.bodyA.node?.name == "Turtle" || contact.bodyA.node?.name == "Panda"{
+        if contact.bodyA.node?.name == "Turtle" || contact.bodyB.node?.name == "FinishingLine"{
             firstBody = contact.bodyA
             secondBody = contact.bodyB
+             afterTurtleWin()
         }else{
             firstBody = contact.bodyB
             secondBody = contact.bodyA
         }
         firstBody.node?.removeFromParent()
-        afterFinishingLine()
+       
+        
+       if contact.bodyA.node?.name == "Panda" || contact.bodyB.node?.name == "FinishingLine"{
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+         afterPandaWin()
+        }else{
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        firstBody.node?.removeFromParent()
+       
     }
     
     func setUp() {
@@ -64,7 +76,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         turtle.physicsBody?.contactTestBitMask = FinishType.FINISHLINE_COLLIDER
         turtle.physicsBody?.collisionBitMask = 0
         
-        panda.physicsBody?.categoryBitMask = FinishType.ANIMAL_COLLIDER
+        panda.physicsBody?.categoryBitMask = FinishType.ANIMALPANDA_COLLIDER
         panda.physicsBody?.contactTestBitMask = FinishType.FINISHLINE_COLLIDER
         panda.physicsBody?.collisionBitMask = 0
         
@@ -149,6 +161,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         view?.presentScene(menuScene, transition: SKTransition.doorsCloseHorizontal(withDuration: TimeInterval (1)))
     }
     
+    func afterTurtleWin(){
+        let turtleScene = SKScene(fileNamed: "TurtleWin")!
+        turtleScene.scaleMode = .aspectFill
+        view?.presentScene(turtleScene, transition: SKTransition.doorsCloseHorizontal(withDuration: TimeInterval (1)))
+    }
+    
+    func afterPandaWin(){
+        let pandaScene = SKScene(fileNamed: "PandaWin")!
+        pandaScene.scaleMode = .aspectFill
+        view?.presentScene(pandaScene, transition: SKTransition.doorsCloseHorizontal(withDuration: TimeInterval (1)))
+    }
     
     @objc func startCountDown(){
         if countDown>0{

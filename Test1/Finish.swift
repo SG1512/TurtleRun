@@ -11,5 +11,6 @@ import UIKit
 
 struct FinishType {
     static let ANIMAL_COLLIDER : UInt32 = 0
+    static let ANIMALPANDA_COLLIDER : UInt32 = 0
     static let FINISHLINE_COLLIDER : UInt32 = 1
 }
